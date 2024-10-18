@@ -9,6 +9,6 @@
 <script setup lang="ts"></script>
 
 <style scoped lang="scss">
-@use './cycontainer.scss' as *;
+@use '@/app/assets/customscroll.scss' as *;
 </style>
 

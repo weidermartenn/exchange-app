@@ -1,3 +1,4 @@
+// widgets/NewsContainer/model/state.ts
 import { defineStore } from "pinia";
 import axios from 'axios';
 
@@ -20,8 +21,16 @@ export const useNewsStore = defineStore('news', {
             this.loading = true;
             try {
                 const api_key = 'pub_565703e88ed48eca4c4bd18daa051801872a6';
-                const response = await axios.get<News[]>(`https://newsdata.io/api/1/latest?apikey=${api_key}&language=ru`);
-                this.news = response.data;
+                const response = await axios.get(`https://newsdata.io/api/1/latest?apikey=${api_key}&language=ru`);
+
+                // Пример обработки ответа, в зависимости от структуры возвращаемого API
+                this.news = response.data.results.map((article: any) => ({
+                    article_id: article.id,
+                    title: article.title,
+                    link: article.link,
+                    pub_date: article.pubDate,
+                    source_id: article.source_id
+                }));
             } catch (error: any) {
                 this.error = error.message;
             } finally {
@@ -29,4 +38,4 @@ export const useNewsStore = defineStore('news', {
             }
         }
     }
-})
+});

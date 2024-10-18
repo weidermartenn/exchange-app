@@ -6,7 +6,7 @@
             </router-link>
             <UserLoc />
         </div>
-        <NewsContainer />
+
         <div class="flex flex-row items-center gap-4">
             <a class="fa-brands fa-github text-3xl text-white" href="https://github.com/weidermartenn/exchange-app" target="_blank"></a>
             <i class="fa-solid fa-microchip text-xl text-white">apis</i>
