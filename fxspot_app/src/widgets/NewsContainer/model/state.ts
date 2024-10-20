@@ -32,7 +32,7 @@ export const useNewsStore = defineStore('news', {
                     source_id: article.source_id
                 }));
             } catch (error: any) {
-                this.error = error.message;
+                this.error = 'Произошла ошибка при загрузке новостей';
             } finally {
                 this.loading = false;
             }

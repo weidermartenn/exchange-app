@@ -5,4 +5,5 @@ export interface LocState {
     countryCode: string | null;
     city: string;
     temp: number | '--';
+    condition_icon: string | null;
 }

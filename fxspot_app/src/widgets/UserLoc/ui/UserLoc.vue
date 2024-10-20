@@ -1,12 +1,13 @@
 <template>
   <div class="rounded-md p-2 text-white" :style="{ width: containerWidth }">
     <!-- Ошибка -->
-    <div v-if="error" class="h-full flex justify-center items-center text-red-500">
+    <div v-if="error" class="h-full gap-2 flex justify-center items-center text-red-500">
+      <i class="fa-solid fa-xmark text-xl"></i>
       {{ error }}
     </div>
 
     <!-- Загрузка -->
-    <div v-else-if="loading" class="h-full flex justify-center items-center">
+    <div v-else-if="loading" class="h-full flex justify-center items-center px-20">
       <div class="loader"></div>
     </div>
 
@@ -19,7 +20,10 @@
         </div>
         <div class="flex flex-row items-center gap-2">
           <i class="fa-solid fa-temperature-three-quarters"></i>
-          <p v-if="temp !== '--'">{{ temp }}°C</p>
+          <p v-if="temp !== '--'" class="flex flex-row justify-center items-center">
+            {{ temp }}°C
+            <img :src="condition_icon" :alt="condition_icon" class="w-16 -my-4"/>
+          </p>
           <p v-else>Температура неизвестна</p>
         </div>
       </div>
@@ -32,7 +36,7 @@ import { ref, onMounted, onBeforeUnmount, toRefs } from 'vue';
 import { useLocStore } from '@/widgets/UserLoc/model/store';
 
 const locStore = useLocStore();
-const { weatherData, loading, error, countryCode, city, temp } = toRefs(locStore);
+const { weatherData, loading, error, countryCode, city, temp, condition_icon } = toRefs(locStore);
 const containerWidth = ref('auto');
 const cityContainer = ref<HTMLElement | null>(null);
 let resizeObserver: ResizeObserver | null = null;

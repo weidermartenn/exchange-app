@@ -10,6 +10,7 @@ export const useLocStore = defineStore('loc', {
     countryCode: null,
     city: 'Неизвестный город',
     temp: '--',
+    condition_icon: null
   }),
   getters: {
     getWeatherData: (state) => state.weatherData,
@@ -18,6 +19,7 @@ export const useLocStore = defineStore('loc', {
     getCountryCode: (state) => state.countryCode,
     getCity: (state) => state.city,
     getTemp: (state) => state.temp,
+    getConditionIcon: (state) => state.condition_icon
   },
   actions: {
     async fetchWeatherByIP() {
@@ -31,13 +33,15 @@ export const useLocStore = defineStore('loc', {
         this.countryCode = country_code;
 
         // Запрос погоды по координатам
-        const apiKey = '02586546b81e214ba2c5b751c986d399';
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=ru&appid=${apiKey}`;
+        const apiKey = 'd0c69695c93247ebbee83252240410';
+        const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&lang=ru&q=${latitude},${longitude}&days=1`;
 
         const response = await axios.get(url);
         this.weatherData = response.data;
-        this.city = response.data.name || 'Неизвестный город';
-        this.temp = Math.round(response.data.main?.temp || '--');
+        this.city = response.data.location?.name || 'Неизвестный город';
+        this.temp = Math.round(response.data.current?.temp_c || '--');
+        this.condition_icon = response.data.current?.condition?.icon || null;
+        console.log(this.condition_icon)
       } catch (error: any) {
         this.error = 'Ошибка при загрузке данных о погоде';
       } finally {

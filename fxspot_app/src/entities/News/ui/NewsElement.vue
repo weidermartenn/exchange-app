@@ -5,11 +5,11 @@
                 <p>{{ news.pub_date }}</p>
                 <h2 class="text-lg">{{ news.title }}</h2>
                 <p>Источник: {{ news.source_id }}</p>
-                <a :href="news.link" target="_blank" class="bg-perfectgreen p-2 rounded-md w-[120px]">Читать новость</a>          
+                <a :href="news.link" target="_blank" class="bg-perfectgreen p-2 rounded-md w-[130px]">Читать оригинал</a>          
             </div>
         </div>
         <div v-else>
-            <p>Новости отсутствуют.</p>
+            <p>Новости отсутствуют.</p> 
         </div>
     </div>
 </template>
@@ -19,7 +19,7 @@ import { defineProps } from 'vue';
 import type { News } from '@/entities/News/model/news';
 
 // Принимаем данные через пропсы
-const props = defineProps<{
+const { newsList } = defineProps<{
   newsList: News[];
 }>();
 </script>
