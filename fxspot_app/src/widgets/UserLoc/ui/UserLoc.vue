@@ -22,11 +22,11 @@
           <i class="fa-solid fa-temperature-three-quarters"></i>
           <p v-if="temp !== '--'" class="flex flex-row justify-center items-center">
             {{ temp }}°C
-            <img :src="condition_icon" :alt="condition_icon" class="w-16 -my-4"/>
           </p>
           <p v-else>Температура неизвестна</p>
         </div>
       </div>
+      <img :src="condition_icon" :alt="condition_icon" class="w-12"/>
     </div>
   </div>
 </template>

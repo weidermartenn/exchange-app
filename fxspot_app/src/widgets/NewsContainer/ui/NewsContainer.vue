@@ -1,21 +1,24 @@
 <template>
-    <div class="basis-1/4 h-full overflow-y-scroll shadow-md shadow-perfectgreen custom-scroll text-white">
-        <!-- Передаем новости в компонент NewsElement -->
+    <div class="basis-1/4 bg-semiaccent h-full overflow-y-scroll shadow-md shadow-perfectgreen custom-scroll text-white">
+        <!-- Loader when news is being fetched -->
         <div v-if="loading" class="h-full flex justify-center items-center">
             <div class="loader"></div>
         </div>
+        <!-- Error message if there's an error -->
         <div v-else-if="error" class="h-full flex flex-col justify-center items-center text-red-500">
             <i class="fa-solid fa-xmark text-red-800 text-7xl"></i>
             {{ error }}
         </div>
+        <!-- Display news list and last updated time -->
         <div v-else>
-          <p class="text-center py-2">Последнее обновление: {{ formattedLastUpdated }}</p>
+          <p class="text-center py-2 px-4">Последнее обновление: {{ formattedLastUpdated }}</p>
           <transition-group name="list" tag="div">
-            <news-element v-for="news in newsList" :key="news.article_id" :news="news"/>
+            <news-element :newsList="newsList" />
           </transition-group>
         </div>
     </div>
 </template>
+
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
@@ -51,26 +54,26 @@ const formattedLastUpdated = computed(() => {
 // Function to fetch news and update the lastUpdated time
 const fetchNewsAndUpdateTime = () => {
   newsStore.fetchNews();
-  lastUpdated.value = new Date(); // Update the time to current
+//   lastUpdated.value = new Date(); // Update the time to current
 };
 
 // Fetch news when component is mounted and set up periodic refresh
 onMounted(() => {
   fetchNewsAndUpdateTime(); // Fetch news immediately
 
-  // const intervalId = setInterval(() => {
-  //   fetchNewsAndUpdateTime(); // Fetch news and update time every 60 seconds
-  // }, 60000);
+//   const intervalId = setInterval(() => {
+//     fetchNewsAndUpdateTime(); // Fetch news and update time every 60 seconds
+//   }, 60000);
 
-  // // Clear interval on unmount to avoid memory leaks
-  // onUnmounted(() => {
-  //   clearInterval(intervalId);
-  // });
+//   // Clear interval on unmount to avoid memory leaks
+//   onUnmounted(() => {
+//     clearInterval(intervalId);
+//   });
 });
 </script>
 
 <style scoped lang="scss">
-@import '@/app/assets/customscroll.scss';
+@use '@/app/assets/customscroll.scss' as *;
 
 .loader {
   border: 4px solid rgba(255, 255, 255, 0.3); /* Light grey */
@@ -84,14 +87,5 @@ onMounted(() => {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.list-move, .list-enter-active, .list-leave-active {
-  transition: all 0.5s ease;
-}
-
-.list-enter-from, .list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
 }
 </style>
