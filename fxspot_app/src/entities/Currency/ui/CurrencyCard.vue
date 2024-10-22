@@ -7,13 +7,17 @@
             </div>
         </div>
         <div class="flex flex-col gap-2">
-            <input class="bg-perfectgray text-white rounded-md border-2 border-white outline-none px-4 py-2 text-xl">
-            <input class="bg-perfectgray text-white rounded-md border-2 border-white outline-none px-4 py-2 text-xl">
+            <AppInput v-model="currencyRub" type="text" placeholder="RUB"/>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import AppInput from '@/shared/AppInput/ui/AppInput.vue';
+
+import {ref} from 'vue';
+
+const currencyRub = ref<string>('');
 
 </script>
 
