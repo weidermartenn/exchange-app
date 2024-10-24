@@ -41,7 +41,6 @@ export const useLocStore = defineStore('loc', {
         this.city = response.data.location?.name || 'Неизвестный город';
         this.temp = Math.round(response.data.current?.temp_c || '--');
         this.condition_icon = response.data.current?.condition?.icon || null;
-        console.log(this.condition_icon)
       } catch (error: any) {
         this.error = 'Ошибка при загрузке данных о погоде';
       } finally {

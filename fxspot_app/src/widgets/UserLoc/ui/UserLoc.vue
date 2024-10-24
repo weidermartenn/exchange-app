@@ -12,7 +12,7 @@
     </div>
 
     <!-- Данные о погоде -->
-    <div v-if="weatherData && !loading && !error" class="flex flex-row gap-10 justify-between items-center px-2">
+    <button v-if="weatherData && !loading && !error" @click="isModalOpen = true" class="flex flex-row h-[75px] gap-10 justify-between items-center px-2 rounded-md hover:bg-perfectgray duration-300 cursor-pointer">
       <div ref="cityContainer" class="flex flex-col">
         <div class="flex flex-row gap-2 items-center">
           <img v-if="countryCode" :src="`https://flagcdn.com/16x12/${countryCode.toLowerCase()}.png`" :alt="countryCode" />
@@ -27,19 +27,26 @@
         </div>
       </div>
       <img :src="condition_icon" :alt="condition_icon" class="w-12"/>
-    </div>
+    </button>
+
+    <transition name="modal" mode="out-in">
+      <user-loc-modal v-model="isModalOpen" v-if="isModalOpen" key="modal" />
+    </transition>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, toRefs } from 'vue';
 import { useLocStore } from '@/widgets/UserLoc/model/store';
+import UserLocModal from '@/widgets/UserLocModal/ui/UserLocModal.vue';
 
 const locStore = useLocStore();
 const { weatherData, loading, error, countryCode, city, temp, condition_icon } = toRefs(locStore);
 const containerWidth = ref('auto');
 const cityContainer = ref<HTMLElement | null>(null);
 let resizeObserver: ResizeObserver | null = null;
+
+const isModalOpen = ref(false);
 
 const setupResizeObserver = () => {
   if (cityContainer.value) {
