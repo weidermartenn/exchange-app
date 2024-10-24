@@ -5,7 +5,7 @@
       :type="type"
       :placeholder="placeholder"
       :value="props.modelValue"
-      class="bg-perfectgray text-white rounded-md border-2 border-white outline-none px-4 py-2 text-xl"
+      class="bg-perfectgray text-white rounded-md border-2 border-perfectgreen outline-none px-4 py-2 text-xl"
     />
   </div>
 </template>

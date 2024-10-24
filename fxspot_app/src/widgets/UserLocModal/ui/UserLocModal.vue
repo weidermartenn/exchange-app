@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50">
+    <div v-if="props.modelValue" class="fixed inset-0 backdrop-blur-md flex justify-center items-center z-50">
     <!-- Контейнер модального окна -->
     <div class="modal-content bg-perfectgray relative rounded-lg shadow-lg p-6">
       <!-- Кнопка закрытия окна -->

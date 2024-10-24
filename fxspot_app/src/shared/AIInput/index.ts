@@ -1,0 +1,1 @@
+export { default as AIInput } from './ui/AIInput.vue';
