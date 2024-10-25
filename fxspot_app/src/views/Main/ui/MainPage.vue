@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-full h-[calc(100vh-75px)] bg-main items-center">
+    <div class="flex w-full h-[calc(100vh-75px)] bg-main">
         <NewsContainer/>
         <CyContainer/>
     </div>

@@ -2,7 +2,7 @@
     <div class="sticky flex justify-between items-center gap-6 top-0 px-6 w-full h-[75px] bg-main border-b-2 border-semiaccent">
         <div class="flex flex-row items-center gap-4">
             <router-link to="/">
-                <p class="text-3xl text-white hover:scale-110 duration-300">FXSpot</p>
+                <p class="text-3xl text-white">FXSpot</p>
             </router-link>
             <UserLoc />
         </div>
@@ -15,9 +15,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import UserLoc from '@/widgets/UserLoc';
 import NewsContainer from '@/widgets/NewsContainer';
 import AIInput from '@/shared/AIInput/ui/AIInput.vue';
+
+const aiRequest = ref('');
 
 </script>
 

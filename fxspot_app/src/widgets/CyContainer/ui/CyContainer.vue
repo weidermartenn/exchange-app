@@ -1,10 +1,8 @@
 <template>
-  <div class="flex basis-1/2 md:basis-1/3 lg:basis-1/4 h-[600px] bg-semiaccent rounded-md inset-0 mx-auto shadow-lg shadow-perfectgreen overflow-x-scroll snap-x snap-mandatory custom-scroll">
-    <div class="snap-center min-w-full h-full shrink-0 flex flex-col items-center py-4">
-      <currency-card/>
+  <div class="w-[calc(100vw-400px)] h-full flex">
+    <div class="flex w-[400px] h-[200px] mx-10 my-10 bg-semiaccent rounded-md shadow-lg shadow-perfectgreen">
+    
     </div>
-    <div class="snap-center min-w-full h-full shrink-0 bg-emerald-500"></div>
-    <div class="snap-center min-w-full h-full shrink-0 bg-sky-700"></div>
   </div>
 </template>
 
