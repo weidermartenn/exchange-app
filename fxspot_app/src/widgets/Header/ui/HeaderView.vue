@@ -6,7 +6,7 @@
             </router-link>
             <UserLoc />
         </div>
-        <AIInput v-model="aiRequest" type="text" placeholder="Задайте вопрос нейросети"/>
+        <AIInput v-model="aiRequest" type="text" placeholder="Введите текст для запроса к AI"/>
         <div class="flex flex-row items-center gap-4">
             <a class="fa-brands fa-github text-3xl text-white" href="https://github.com/weidermartenn/exchange-app" target="_blank"></a>
             <i class="fa-solid fa-microchip text-xl text-white">apis</i>
